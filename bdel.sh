@@ -16,13 +16,12 @@ else
     echo -e "\nFound $vfound files terminating with '~' or '#'"
     read -n1 -p "PROCEED TO DELETE THEM ALL? (y/n): " vans
     if [ $vans == 'y' ]; then
-	echo $'\n'"========DELETING FILES...========"
+	echo $'\n'"DELETING FILES.."
 	sleep 1
 	for vfile in $vfiles; do
 	    rm $vfile
-	    sleep 1
 	done
-	echo "========DELETE COMPLETE========"
+	echo "DELETE COMPLETE"
 	sleep 1
 	echo "exiting..."
     elif [ $vans == 'n' ]; then
