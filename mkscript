@@ -1,17 +1,24 @@
 #!/bin/bash
 file=$1
+editor=$EDITOR
 
-#Check if file name is provided
+#If filename not provided, prompt notify and exit.
+#Else create file, and add x permission
+#If default editor not set then get it from user and use to open file.
+
 if [ ! $file ]; then
     echo "Sorry, filename needed. Try again."
     exit 1
 else
     touch $file
     chmod 744 $file
+    echo "#!/bin/bash" > $file
     echo "Script $file created"
-    read -p "Open with: " editor
-    if [ $editor ]; then
-	echo "#!/bin/bash" > $file
-	$editor $file
+    
+    if [ ! $editor ]; then
+	read -p "Set your default editor: " edtr
+	export EDITOR=$edtr
+	editor=$EDITOR
     fi
+    $editor $file
 fi
